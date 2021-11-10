@@ -17,6 +17,13 @@ defmodule SnsWeb.Router do
   scope "/", SnsWeb do
     pipe_through :browser
 
+    live "/contents", ContentLive.Index, :index
+    live "/contents/new", ContentLive.Index, :new
+    live "/contents/:id/edit", ContentLive.Index, :edit
+
+    live "/contents/:id", ContentLive.Show, :show
+    live "/contents/:id/show/edit", ContentLive.Show, :edit
+
     get "/", PageController, :index
   end
 
