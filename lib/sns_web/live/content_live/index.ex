@@ -22,7 +22,7 @@ defmodule SnsWeb.ContentLive.Index do
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Content")
+    |> assign(:page_title, "新規書き込み")
     |> assign(:content, %Content{})
   end
 

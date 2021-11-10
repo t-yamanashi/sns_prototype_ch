@@ -1,4 +1,4 @@
-<h1>Listing Contents</h1>
+<h1>Elixirってどうよ？</h1>
 
 <%= if @live_action in [:new, :edit] do %>
   <%= live_modal SnsWeb.ContentLive.FormComponent,
@@ -9,29 +9,14 @@
     return_to: Routes.content_index_path(@socket, :index) %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Detail</th>
+<%= for content <- @contents do %>
+    <%= content.id %> 名前:<%= content.name %>  <%= content.inserted_at %><br>
+    <div style="padding: 10px;">
+      <pre>
+      <%= content.detail %>
+      </pre>
+    </div>
+    <br>
+<% end %>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="contents">
-    <%= for content <- @contents do %>
-      <tr id={"content-#{content.id}"}>
-        <td><%= content.name %></td>
-        <td><%= content.detail %></td>
-
-        <td>
-          <span><%= live_redirect "Show", to: Routes.content_show_path(@socket, :show, content) %></span>
-          <span><%= live_patch "Edit", to: Routes.content_index_path(@socket, :edit, content) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: content.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<span><%= live_patch "New Content", to: Routes.content_index_path(@socket, :new) %></span>
+<span><%= live_patch "新規書き込み", to: Routes.content_index_path(@socket, :new) %></span>

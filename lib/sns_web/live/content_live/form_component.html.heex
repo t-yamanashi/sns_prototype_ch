@@ -9,16 +9,14 @@
     phx-change="validate"
     phx-submit="save">
   
-    <%= label f, :name %>
-    <%= text_input f, :name %>
+    名前：<%= text_input f, :name %>
     <%= error_tag f, :name %>
   
-    <%= label f, :detail %>
-    <%= text_input f, :detail %>
+    <%= textarea f, :detail %>
     <%= error_tag f, :detail %>
   
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit "書き込み", phx_disable_with: "Saving..." %>
     </div>
   </.form>
 </div>
